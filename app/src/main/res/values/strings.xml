@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyBaZi</string>
+
+
+    <string-array name="gender_options">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+
+    <string-array name="liupai_options">
+        <item>流派1</item>
+        <item>流派2</item>
+    </string-array>
+
+</resources>

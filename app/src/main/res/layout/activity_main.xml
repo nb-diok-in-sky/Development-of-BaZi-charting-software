@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="2dp"
+    tools:layout_editor_absoluteY="33dp">
+
+
+    <LinearLayout
+        android:id="@+id/brithInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <NumberPicker
+            android:id="@+id/pickerYear"
+            android:layout_width="90dp"
+            android:layout_height="150dp"
+            android:layout_weight="1" />
+
+
+        <NumberPicker
+            android:id="@+id/pickerMonth"
+            android:layout_width="90dp"
+            android:layout_height="150dp"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/pickerDay"
+            android:layout_width="90dp"
+            android:layout_height="150dp"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:id="@+id/pickerTime"
+            android:layout_width="90dp"
+            android:layout_height="150dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/brithButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/brithInput">
+
+        <Spinner
+            android:id="@+id/etGender"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:entries="@array/gender_options" />
+
+        <Spinner
+            android:id="@+id/etLiuPai"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:entries="@array/liupai_options" />
+
+
+        <Button
+            android:id="@+id/btnCalc"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="开始排盘" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/printControll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <LinearLayout
+            android:id="@+id/printInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/BaZiInfo"
+                android:text="日期" />
+
+            <TextView
+                android:id="@+id/year"
+                style="@style/BaZiInfo"
+                android:text="年柱" />
+
+            <TextView
+                android:id="@+id/month"
+                style="@style/BaZiInfo"
+                android:text="月柱" />
+
+            <TextView
+                android:id="@+id/day"
+                style="@style/BaZiInfo"
+                android:text="日柱" />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/BaZiInfo"
+                android:text="时柱" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/printMainStar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMainStar"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:text="主星" />
+
+            <TextView
+                android:id="@+id/tvYearStar"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:textColor="#FF4B4B4B" />
+
+            <TextView
+                android:id="@+id/tvMonthStar"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:textColor="#FF4B4B4B" />
+
+            <TextView
+                android:id="@+id/tvDayStar"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:textColor="#FF4B4B4B" />
+
+
+            <TextView
+                android:id="@+id/tvTimeStar"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:textColor="#FF4B4B4B" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/printGan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <TextView
+
+                android:id="@+id/tvGanID"
+                style="@style/BaziComment"
+                android:layout_weight="1"
+                android:text="天干"/>
+
+            <TextView
+                android:id="@+id/tvYearGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+
+                android:id="@+id/tvMonthGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+
+                android:id="@+id/tvDayGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+
+                android:id="@+id/tvTimeGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/printZhi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <TextView
+
+                android:id="@+id/tvZhiID"
+                style="@style/BaziComment"
+                android:layout_weight="1"
+                android:text="地支" />
+
+            <TextView
+
+                android:id="@+id/tvYearZhi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+
+                android:id="@+id/tvMonthZhi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+
+                android:id="@+id/tvDayZhi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+
+                android:id="@+id/tvTimeZhi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/printHideGan"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <TextView
+
+                android:id="@+id/tvHideGanID"
+                style="@style/BaziComment"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="藏干" />
+
+            <TextView
+
+                android:id="@+id/tvYearHideGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/tvMonthHideGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/tvDayHideGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/tvTimeHideGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/printDiShi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/DiShi"
+                style="@style/BaziComment"
+                android:layout_weight="1"
+                android:text="自坐" />
+
+            <TextView
+                android:id="@+id/tvYearDiShi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvMonthDiShi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvDayDiShi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/tvTimeDiShi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/printNaYin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <TextView
+
+                android:id="@+id/tvNaYinID"
+                style="@style/BaziComment"
+                android:layout_weight="1"
+                android:text="纳音" />
+
+            <TextView
+
+                android:id="@+id/tvYearNaYin"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/tvMonthNaYin"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/tvDayNaYin"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/tvTimeNaYin"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recDaYun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecDayun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/printResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/printNaYin"
+            >
+
+
+            <ScrollView
+
+                android:id="@+id/scrollViewResult"
+                android:layout_width="300dp"
+                android:layout_height="179dp"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="这里显示排盘结果..."
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+
+            </ScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

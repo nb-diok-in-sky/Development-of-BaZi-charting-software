@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="wuxing_mu">#FF2EAA3E</color>
+    <color name="wuxing_huo">#FFE8232A</color>
+    <color name="wuxing_tu">#FF8B7D2A</color>
+    <color name="wuxing_jin">#FFD4820A</color>
+    <color name="wuxing_shui">#FF1A7FD4</color>
+    <color name="shiShen_color">#FF4B4B4B</color>
+    <color name="table_color">#FF9E9E9E</color>
+    <color name="dayun_bg_normal">#F5F5F5</color>
+    <color name="dayun_year_text">#888888</color>
+
+</resources>

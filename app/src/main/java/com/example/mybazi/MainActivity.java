@@ -58,7 +58,7 @@ public void calculateBaZi(BaziResult baziResult  ){
     findViewById(R.id.printControll).setVisibility(View.VISIBLE);
     findViewById(R.id.brithButton).setVisibility(View.GONE);
     findViewById(R.id.brithInput).setVisibility(View.GONE);
-    print.printResult();nnn
+    print.printResult();
 
    tvResult.setText(print.printAll());
 }

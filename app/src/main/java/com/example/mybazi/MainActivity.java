@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private NumberPicker pickerYear,pickerMonth,pickerDay,pickerTime;
     private Spinner etGender, etLiuPai;
     private Button btnCalc;
-    private TextView tvResult;
  private ActivityMainBinding binding;
  private Tools tools = new Tools();
 
@@ -54,9 +53,11 @@ public void calculateBaZi(BaziResult baziResult  ){
     findViewById(R.id.brithButton).setVisibility(View.GONE);
     findViewById(R.id.brithInput).setVisibility(View.GONE);
     print.printResult();
+
+
+
     binding.recDaYun.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     binding.recLiuNian.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
     print.printDaYun();
 
 }

@@ -64,6 +64,9 @@ ItemDayunBinding binding = ItemDayunBinding.inflate(
         holder.binding.tvDaYunTianGan.setText(Tools.setColorOfGanZhi(yunNianInfo.tiangan));
         holder.binding.tvDaYunDiZhi.setText(Tools.setColorOfGanZhi(yunNianInfo.dizhi));
 
+
+
+
         if (yunNianInfo.startAge > 0) {
             holder.binding.tvDaYunAge.setVisibility(View.VISIBLE);
                 holder.binding.tvDaYunAge.setText(yunNianInfo.startAge + "岁");
@@ -75,7 +78,7 @@ ItemDayunBinding binding = ItemDayunBinding.inflate(
         holder.itemView.setSelected(position == selectedPosition);
         holder.itemView.setOnClickListener(v -> {
             int newPos = holder.getBindingAdapterPosition();
-            if (newPos == RecyclerView.NO_POSITION) return; // 加这一行
+            if (newPos == RecyclerView.NO_POSITION) return;
             int old = selectedPosition;
             selectedPosition = newPos;
             notifyItemChanged(old);

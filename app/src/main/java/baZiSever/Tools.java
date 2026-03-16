@@ -1,5 +1,7 @@
 package baZiSever;
 
+import static com.nlf.calendar.EightChar.CHANG_SHENG;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Spannable;
@@ -10,14 +12,35 @@ import androidx.core.content.ContextCompat;
 
 import com.example.mybazi.R;
 import com.nlf.calendar.EightChar;
-import com.nlf.calendar.eightchar.DaYun;
+import com.nlf.calendar.util.LunarUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Tools {
+
+
+
+    private static final Map<String, Integer> CHANG_SHENG_OFFSET = new HashMap<String, Integer>() {{
+        put("甲", 1);  put("丙", 10); put("戊", 10);
+        put("庚", 7);  put("壬", 4);
+        put("乙", 6);  put("丁", 9);  put("己", 9);
+        put("辛", 0);  put("癸", 3);
+    }};
+
+    public static String getDiShi(String dayGan, int zhiIndex) {
+        int dayGanIndex = Arrays.asList(LunarUtil.GAN).indexOf(dayGan);
+        int index = CHANG_SHENG_OFFSET.get(dayGan) + (dayGanIndex % 2 == 0 ? zhiIndex : -zhiIndex);
+        if (index >= 12) index -= 12;
+        if (index < 0)   index += 12;
+        return CHANG_SHENG[index];
+    }
+
+
+
 
     private static Map<String, Integer> COLOR_MAP;
 
@@ -82,10 +105,6 @@ public class Tools {
         return formatHideGanWithShiShen;
     }
 
-
-
-
-
     public static List<GanZhiText> getGanZhiText(EightChar eightChar){
         //这里是生成遍历 存储每个柱子的天干地支和藏干
         //生成四个柱子 每个柱都算一个天干地支还有藏干
@@ -100,4 +119,9 @@ public class Tools {
     }
 
 
+
+
+
 }
+
+

@@ -1,15 +1,20 @@
 package baZiSever;
 
-import android.util.Log;
-
 import com.nlf.calendar.eightchar.DaYun;
 import com.nlf.calendar.eightchar.LiuNian;
+import com.nlf.calendar.eightchar.XiaoYun;
 import com.nlf.calendar.util.LunarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class YunNianFactory {
+
+
+    //先写一个map用来执行自坐的
+
+    private static final String[] CHANG_SHENG =
+            {"长生","沐浴","冠带","临官","帝旺","衰","病","死","墓","绝","胎","养"};
+
 
     public List<String> cangGan = new ArrayList<>();
     public List<String> shiShenCangGan = new ArrayList<>();
@@ -21,6 +26,14 @@ public class YunNianFactory {
 
 public static List<YunNianInfo>  buildDaYunList(DaYun[] daYunArr,String dayGan){//这里面要存大运和日干 之后套用方法来分析相对关系，获取十神
     List<YunNianInfo> list = new ArrayList<>();
+   YunNianInfo xiaoYunInfo = new YunNianInfo();
+    //新建一个小运的信息
+
+    xiaoYunInfo.startYear =daYunArr[0].getStartYear();
+    xiaoYunInfo.startAge = daYunArr[0].getStartAge();
+    xiaoYunInfo.tiangan = "小运";
+    xiaoYunInfo.dizhi = "";
+    list.add(xiaoYunInfo);
 
     //存完了之后需要进行拆解，将每个大运分开来拆成干和地支还有年龄和事件   dayunarr是大运数组  它可以拆分成很多很多数据
     //现在拆一下
@@ -44,17 +57,34 @@ public static List<YunNianInfo>  buildDaYunList(DaYun[] daYunArr,String dayGan){
         //先获取流年  库里直接给了流年算法 真好
         LiuNian[] liuNianArr = daYun.getLiuNian();//这里存了10个流年，接下来分别build就可以了
 
-        for(LiuNian liunian:liuNianArr){
-        list.add(build(liunian.getGanZhi(),liunian.getYear(),liunian.getAge(),dayGan));
+        for(LiuNian liuNian:liuNianArr){
+
+        list.add(build(liuNian.getGanZhi(),liuNian.getYear(),liuNian.getAge(),dayGan));
         }
 
         return list;
     }
+    public static List<YunNianInfo>  buildXiaoYunList(DaYun[] daYunArr, String dayGan){//这里面要存大运和日干 之后套用方法来分析相对关系，获取十神
+        List<YunNianInfo> list = new ArrayList<>();
+        //存完了之后需要进行拆解，将每个大运分开来拆成干和地支还有年龄和事件   d组  它可以拆分成很多很多数据
+        //流年的信息也包含几几年 年龄和具体的干支 和干支十神
+        //先获取流年  库里直接给了流年算法 真好
+
+        for (XiaoYun xiaoYun : daYunArr[0].getXiaoYun()) {
+            list.add(build(xiaoYun.getGanZhi(), xiaoYun.getYear(), xiaoYun.getAge(), dayGan));
+        }
+        return  list;
+}
+
+//来一个方法拼接流年和小运   当arr为0的时候   这条代码会执行
 
 
 
 
-//获取天干地支 藏干  和藏干十神的的方法
+
+
+
+        //获取天干地支 藏干  和藏干十神的的方法
 private static YunNianInfo build(String ganZhi,int startYear,int startAge,String dayGan){
 //这里就是要处理干支关系了，
 YunNianInfo yunNianInfo = new YunNianInfo();
@@ -89,8 +119,6 @@ YunNianInfo yunNianInfo = new YunNianInfo();
 
     return yunNianInfo ;
 }
-
-
 
 
 

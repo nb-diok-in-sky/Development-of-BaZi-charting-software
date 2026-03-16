@@ -103,6 +103,7 @@
             <TextView
                 android:id="@+id/date"
                 style="@style/BaZiInfo"
+                android:layout_weight="0.6"
                 android:text="日期" />
 
             <TextView
@@ -114,7 +115,6 @@
             <TextView
                 android:id="@+id/tvDaYun"
                 style="@style/BaZiInfo"
-                android:layout_weight="1"
                 android:text="大运" />
 
             <TextView
@@ -147,16 +147,16 @@
             <TextView
                 android:id="@+id/tvMainStar"
                 style="@style/BaZiInfo"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:text="主星" />
 
             <TextView
-                android:id="@+id/tvLiuYear"
+                android:id="@+id/tvLiuStar"
                 style="@style/BaZiInfo"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tvYunYear"
+                android:id="@+id/tvYunStar"
                 style="@style/BaZiInfo"
                 android:layout_weight="1" />
 
@@ -197,17 +197,17 @@
 
                 android:id="@+id/tvGanID"
                 style="@style/BaziComment"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:text="天干" />
 
             <TextView
-                android:id="@+id/tvLiuMonth"
+                android:id="@+id/tvLiuGan"
                 style="@style/BaziCell"
                 android:layout_weight="1"
                 android:textSize="34sp" />
 
             <TextView
-                android:id="@+id/tvYunMonth"
+                android:id="@+id/tvYunGan"
                 style="@style/BaziCell"
                 android:layout_weight="1"
                 android:textSize="34sp" />
@@ -252,7 +252,7 @@
 
                 android:id="@+id/tvZhiID"
                 style="@style/BaziComment"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:text="地支" />
 
             <TextView
@@ -310,18 +310,20 @@
                 android:id="@+id/tvHideGanID"
                 style="@style/BaziComment"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:text="藏干" />
 
             <TextView
                 android:id="@+id/tvLiuHideGan"
                 style="@style/BaziCell"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvYunHideGan"
                 style="@style/BaziCell"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
@@ -329,6 +331,7 @@
 
                 android:id="@+id/tvYearHideGan"
                 style="@style/BaziCell"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
@@ -336,6 +339,7 @@
 
                 android:id="@+id/tvMonthHideGan"
                 style="@style/BaziCell"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
@@ -343,6 +347,7 @@
 
                 android:id="@+id/tvDayHideGan"
                 style="@style/BaziCell"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
@@ -350,6 +355,7 @@
 
                 android:id="@+id/tvTimeHideGan"
                 style="@style/BaziCell"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
@@ -365,43 +371,44 @@
             <TextView
                 android:id="@+id/DiShi"
                 style="@style/BaziComment"
-                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:layout_weight="0.6"
                 android:text="自坐" />
 
             <TextView
                 android:id="@+id/tvLiuZiZuo"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvYunZiZuo"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvYearDiShi"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvMonthDiShi"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvDayDiShi"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
 
             <TextView
                 android:id="@+id/tvTimeDiShi"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
@@ -418,46 +425,48 @@
 
                 android:id="@+id/tvNaYinID"
                 style="@style/BaziComment"
-                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:layout_weight="0.6"
                 android:text="纳音" />
 
             <TextView
                 android:id="@+id/tvLiuNaYin"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvYunNaYin"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
 
                 android:id="@+id/tvYearNaYin"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
 
                 android:id="@+id/tvMonthNaYin"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
 
                 android:id="@+id/tvDayNaYin"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
 
             <TextView
 
                 android:id="@+id/tvTimeNaYin"
-                style="@style/BaziCell"
+                style="@style/BaziAnother"
                 android:layout_weight="1"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -466,47 +475,19 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recDaYun"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="102dp"
             android:clipToPadding="false"
-            android:paddingHorizontal="8dp"/>
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recLiuNian"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="108dp"
             android:clipToPadding="false"
-            android:paddingHorizontal="8dp"/>
-        <LinearLayout
-            android:id="@+id/printResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/printNaYin">
-
-
-            <ScrollView
-
-                android:id="@+id/scrollViewResult"
-                android:layout_width="300dp"
-                android:layout_height="179dp"
-                android:layout_margin="16dp">
-
-                <TextView
-                    android:id="@+id/tvResult"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="这里显示排盘结果..."
-                    android:textSize="16sp"
-                    android:visibility="visible" />
-
-            </ScrollView>
-
-        </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp" />
     </LinearLayout>
 
 

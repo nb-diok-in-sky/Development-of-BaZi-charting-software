@@ -1,17 +1,14 @@
 package com.example.mybazi;
 
-import android.app.Activity;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Button;
@@ -32,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvResult;
  private ActivityMainBinding binding;
  private Tools tools = new Tools();
-
- private RecyclerView recDaYun,recLiuNian;
 
 //声明了linearlayout了  接下来要初始化 还有绑定  然后就可以调整隐藏和释放了
 
@@ -59,17 +54,12 @@ public void calculateBaZi(BaziResult baziResult  ){
     findViewById(R.id.brithButton).setVisibility(View.GONE);
     findViewById(R.id.brithInput).setVisibility(View.GONE);
     print.printResult();
+    binding.recDaYun.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    binding.recLiuNian.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-   tvResult.setText(print.printAll());
+    print.printDaYun();
+
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -113,7 +103,6 @@ public void calculateBaZi(BaziResult baziResult  ){
         etGender = findViewById(R.id.etGender);
         etLiuPai = findViewById(R.id.etLiuPai);
         btnCalc = findViewById(R.id.btnCalc);
-        tvResult = findViewById(R.id.tvResult);
 
         findViewById(R.id.printControll).setVisibility(View.GONE);
         findViewById(R.id.brithButton).setVisibility(View.VISIBLE);

@@ -34,15 +34,6 @@ public class BaziResult {
     }
 
 
-
-
-
-
-    public Solar getSolar() {//表示阳历信息
-        return this.solar;
-    }
-    //这个是单独获取阳历
-
     public EightChar getEightChar() {//获取八字信息
         return this.eightChar;
     }

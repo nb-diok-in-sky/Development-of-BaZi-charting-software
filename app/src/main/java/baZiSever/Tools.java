@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.mybazi.R;
 import com.nlf.calendar.EightChar;
+import com.nlf.calendar.eightchar.DaYun;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Tools {
-
-    Color color;
 
     private static Map<String, Integer> COLOR_MAP;
 
@@ -59,7 +58,7 @@ public class Tools {
 
     //新增一个拼接十神和藏干的tools
 
-    public static SpannableStringBuilder SetColorOfGanZhi(Context context,List<String> hideGan, List<String> shiShen){
+    public static SpannableStringBuilder setColorOfHideGanShiShen(Context context,List<String> hideGan, List<String> shiShen){
         //需要拼接 所以要先声明用于拼接的字符串
         SpannableStringBuilder formatHideGanWithShiShen = new SpannableStringBuilder();
 
@@ -99,11 +98,6 @@ public class Tools {
         return list;
 
     }
-
-
-
-    //接下来要写循环初始化给组件的方法
-
 
 
 }

@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    style="@style/BaZiInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
@@ -93,7 +94,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <LinearLayout
             android:id="@+id/printInfo"
             android:layout_width="match_parent"
@@ -104,6 +104,18 @@
                 android:id="@+id/date"
                 style="@style/BaZiInfo"
                 android:text="日期" />
+
+            <TextView
+                android:id="@+id/tvLiuNian"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:text="流年" />
+
+            <TextView
+                android:id="@+id/tvDaYun"
+                style="@style/BaZiInfo"
+                android:layout_weight="1"
+                android:text="大运" />
 
             <TextView
                 android:id="@+id/year"
@@ -139,6 +151,16 @@
                 android:text="主星" />
 
             <TextView
+                android:id="@+id/tvLiuYear"
+                style="@style/BaZiInfo"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvYunYear"
+                style="@style/BaZiInfo"
+                android:layout_weight="1" />
+
+            <TextView
                 android:id="@+id/tvYearStar"
                 style="@style/BaZiInfo"
                 android:layout_weight="1"
@@ -168,15 +190,27 @@
             android:id="@+id/printGan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <TextView
 
                 android:id="@+id/tvGanID"
                 style="@style/BaziComment"
                 android:layout_weight="1"
-                android:text="天干"/>
+                android:text="天干" />
+
+            <TextView
+                android:id="@+id/tvLiuMonth"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/tvYunMonth"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
 
             <TextView
                 android:id="@+id/tvYearGan"
@@ -211,8 +245,8 @@
             android:id="@+id/printZhi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <TextView
 
@@ -220,6 +254,18 @@
                 style="@style/BaziComment"
                 android:layout_weight="1"
                 android:text="地支" />
+
+            <TextView
+                android:id="@+id/tvLiuZhi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/tvYunZhi"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="34sp" />
 
             <TextView
 
@@ -256,8 +302,8 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <TextView
 
@@ -266,6 +312,18 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="藏干" />
+
+            <TextView
+                android:id="@+id/tvLiuHideGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvYunHideGan"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
 
             <TextView
 
@@ -311,6 +369,18 @@
                 android:text="自坐" />
 
             <TextView
+                android:id="@+id/tvLiuZiZuo"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvYunZiZuo"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/tvYearDiShi"
                 style="@style/BaziCell"
                 android:layout_weight="1"
@@ -341,8 +411,8 @@
             android:id="@+id/printNaYin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <TextView
 
@@ -350,6 +420,18 @@
                 style="@style/BaziComment"
                 android:layout_weight="1"
                 android:text="纳音" />
+
+            <TextView
+                android:id="@+id/tvLiuNaYin"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvYunNaYin"
+                style="@style/BaziCell"
+                android:layout_weight="1"
+                android:textSize="16sp" />
 
             <TextView
 
@@ -384,21 +466,26 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recDaYun"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:paddingHorizontal="8dp"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecDayun"
+            android:id="@+id/recLiuNian"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:paddingHorizontal="8dp"/>
         <LinearLayout
             android:id="@+id/printResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/printNaYin"
-            >
+            app:layout_constraintTop_toBottomOf="@id/printNaYin">
 
 
             <ScrollView

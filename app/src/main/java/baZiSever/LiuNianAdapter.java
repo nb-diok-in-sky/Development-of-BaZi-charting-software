@@ -1,0 +1,104 @@
+package baZiSever;
+
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mybazi.databinding.ItemLiunianBinding;
+
+
+import java.util.List;
+
+
+public class LiuNianAdapter extends RecyclerView.Adapter<LiuNianAdapter.ViewHolder> {
+
+    private List<YunNianInfo> liuNianList;//这里是写大运的数据，存储的十个大运的数据
+    private int selectedPosition = 0;   // 当前选中第几个，默认第0个//这里是选择第几个大运的顺序默认第0个
+    private OnLiuNianClickListener listener;  //这里是点击事件   点击大运触发事件就可以了
+
+    static class ViewHolder extends RecyclerView.ViewHolder {//这个类里面存放的是格子里面放置的textview的集合， 这是一个继承了recyclerview的子类函数
+        ItemLiunianBinding binding;//这个是绑定大运的，通过binding来找到每个textview  只有把super传出去了，父类才知道是哪个view，才能初始化
+        ViewHolder(ItemLiunianBinding binding) {
+            super(binding.getRoot());//getroot返回的是一个view类型的  他是所有组件的父类  而super是recycleview viewhold的构造函数
+            this.binding = binding;
+        }
+    }
+
+
+
+
+    public interface OnLiuNianClickListener {
+        void onLiuNianClick(YunNianInfo yunNianInfo,int Position);
+        //这是点击事件触发的方法，当你点击的时候返回某个大运的信息（年龄，干支，几几年）还有位置（第几个大运）
+    }
+
+
+
+    public LiuNianAdapter(List<YunNianInfo> liuNianList, OnLiuNianClickListener listener) {
+        this.liuNianList = liuNianList;
+        this.listener = listener;//这是构造函数啊，必须得传进来大运的信息和列表
+    }
+
+
+    //新写一点击流年后将流年数据传入，并且替换的发给发
+    public void updateData(List<YunNianInfo> updateList ){
+        //这里面主要是把流年的信息替换，用来刷新流年的
+        //这里面的逻辑是把数据传入进来，点击了新的大运的时候就把流年的调整成0号流年，也就是默认流年
+        this.liuNianList  = updateList;
+        this.selectedPosition = 0;
+        notifyDataSetChanged();
+
+    }
+
+
+
+
+
+
+    //下面这个是和recycle配套的方法
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {//这是造格子的方法
+        //recycle需要格子 但是系统不知道是什么样子的格子 所以需要在这里告知系统 你需要造一个什么样的格子
+        ItemLiunianBinding binding = ItemLiunianBinding.inflate(
+                LayoutInflater.from(parent.getContext()),parent,false);
+        return new ViewHolder(binding);
+
+    }
+
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+//这里是
+        YunNianInfo yunNianInfo = liuNianList.get(position);
+        holder.binding.tvLiuNianYear.setText(String.valueOf(yunNianInfo.startYear));
+        holder.binding.tvLiuNianTianGan.setText(Tools.setColorOfGanZhi(yunNianInfo.tiangan));
+        holder.binding.tvLiuNianDiZhi.setText(Tools.setColorOfGanZhi(yunNianInfo.dizhi));
+
+
+        //这个方法是切换目前所选的流年的位置，获取鼠标的位置数据，然后与鼠标附近的大运流年相匹配
+        holder.itemView.setSelected(position == selectedPosition);
+        holder.itemView.setOnClickListener(v -> {
+            int newPos = holder.getBindingAdapterPosition();
+            if (newPos == RecyclerView.NO_POSITION) return;
+            int old = selectedPosition;
+            selectedPosition = newPos;
+            notifyItemChanged(old);
+            notifyItemChanged(selectedPosition);
+            listener.onLiuNianClick(liuNianList.get(selectedPosition), selectedPosition);
+
+        });
+
+    }
+
+
+
+    @Override
+    public int getItemCount() {
+        return liuNianList.size();
+    }
+}

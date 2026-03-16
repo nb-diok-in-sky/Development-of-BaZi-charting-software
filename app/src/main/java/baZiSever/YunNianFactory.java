@@ -1,5 +1,7 @@
 package baZiSever;
 
+import android.util.Log;
+
 import com.nlf.calendar.eightchar.DaYun;
 import com.nlf.calendar.eightchar.LiuNian;
 import com.nlf.calendar.util.LunarUtil;
@@ -22,8 +24,12 @@ public static List<YunNianInfo>  buildDaYunList(DaYun[] daYunArr,String dayGan){
 
     //存完了之后需要进行拆解，将每个大运分开来拆成干和地支还有年龄和事件   dayunarr是大运数组  它可以拆分成很多很多数据
     //现在拆一下
-    for(DaYun daYun :daYunArr){//这一段是每次从DaYun这个list类里面拆出来一个数据，然后用add来分解来获取其中的年份年龄和干支 然后塞进daYunArr里面
-        list.add(build(daYun.getGanZhi(),daYun.getStartYear(),daYun.getStartAge(),dayGan));//这个build方法是用来整合这三个数据，返回的也是一个list类型
+
+    for(int i = 1;i<daYunArr.length;i++){//这一段是每次从DaYun这个list类里面拆出来一个数据，然后用add来分解来获取其中的年份年龄和干支 然后塞进daYunArr里面
+
+        list.add(build(daYunArr[i].getGanZhi(),daYunArr[i].getStartYear(),daYunArr[i].getStartAge(),dayGan
+        ));
+
     }
 
     return list;
@@ -47,11 +53,11 @@ public static List<YunNianInfo>  buildDaYunList(DaYun[] daYunArr,String dayGan){
 
 
 
+
 //获取天干地支 藏干  和藏干十神的的方法
 private static YunNianInfo build(String ganZhi,int startYear,int startAge,String dayGan){
 //这里就是要处理干支关系了，
 YunNianInfo yunNianInfo = new YunNianInfo();
-
 
     yunNianInfo.startAge  = startAge;
     yunNianInfo.startYear = startYear;
@@ -80,6 +86,7 @@ YunNianInfo yunNianInfo = new YunNianInfo();
             yunNianInfo.shiShenCangGan.add(cangGanShiShen != null ? cangGanShiShen : "");
         }
     }
+
     return yunNianInfo ;
 }
 

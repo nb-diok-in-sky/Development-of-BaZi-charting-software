@@ -1,13 +1,10 @@
 package baZiSever;
 
 
-import com.example.mybazi.R;
 import com.example.mybazi.databinding.ActivityMainBinding;
 import com.nlf.calendar.EightChar;
 import com.nlf.calendar.eightchar.DaYun;
 import com.nlf.calendar.eightchar.Yun;
-
-import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
 
@@ -26,25 +23,6 @@ public class Print {
         this.binding = binding;
         this.context = context;
     }
-
-
-    //下面这个是打印四柱和十神的
-    public String printSiZhu() {
-        EightChar eightChar = baziResult.getEightChar();
-        //下面这是四柱
-        StringBuilder sizhu = new StringBuilder();
-        sizhu.append("年柱：").append(eightChar.getYear()).append("\n");
-        sizhu.append("月柱：").append(eightChar.getMonth()).append("\n");
-        sizhu.append("日柱：").append(eightChar.getDay()).append("\n");
-        sizhu.append("时柱：").append(eightChar.getTime()).append("\n");
-//接下来打印藏干
-        sizhu.append("年柱藏干：").append(eightChar.getYearHideGan()).append("\n");
-        sizhu.append("月柱藏干：").append(eightChar.getMonthHideGan()).append("\n");
-        sizhu.append("日柱藏干：").append(eightChar.getDayHideGan()).append("\n");
-        sizhu.append("时柱藏干：").append(eightChar.getTimeHideGan()).append("\n");
-        return sizhu.toString();
-    }
-
 
 
 
@@ -68,7 +46,7 @@ public class Print {
                 starViews[i].setText(ganZhiText.star);
                 ganViews[i].setText(Tools.setColorOfGanZhi(ganZhiText.gan));
                 zhiViews[i].setText(Tools.setColorOfGanZhi(ganZhiText.zhi));
-                hideGanViews[i].setText(Tools.SetColorOfGanZhi(context,ganZhiText.hideGan, ganZhiText.hideGanShiShen));
+                hideGanViews[i].setText(Tools.setColorOfHideGanShiShen(context,ganZhiText.hideGan, ganZhiText.hideGanShiShen));
                 diShiView[i].setText(ganZhiText.diShi);
                 naYinView[i].setText(ganZhiText.naYin);
 
@@ -77,101 +55,47 @@ public class Print {
             }
     }
 
+    public void printDaYun(){
 
-
-
-        //接下来打印十神
-public String printShiShen(){
-    EightChar eightChar = baziResult.getEightChar();
-    StringBuilder shishen = new StringBuilder();
-        //年柱十神
-    shishen.append("年干十神：").append(eightChar.getYearShiShenGan()).append("\n");
-    shishen.append("年支十神：").append(eightChar.getYearShiShenZhi()).append("\n");
-
-    shishen.append("月干十神：").append(eightChar.getMonthShiShenGan()).append("\n");
-    shishen.append("月支十神：").append(eightChar.getMonthShiShenZhi()).append("\n");
-
-    shishen.append("日干十神：").append(eightChar.getDayShiShenGan()).append("\n");
-    shishen.append("日支十神：").append(eightChar.getDayShiShenZhi()).append("\n");
-
-    shishen.append("时干十神：").append(eightChar.getTimeShiShenGan()).append("\n");
-    shishen.append("时支十神：").append(eightChar.getTimeShiShenZhi()).append("\n");
-  return shishen.toString();
-    }
-
-
-
-    //接下来打印地支十二张生
-    public String printDiZhangSheng(){
         EightChar eightChar = baziResult.getEightChar();
-        StringBuilder shierzhangsheng = new StringBuilder();
-        shierzhangsheng.append("年自坐").append(eightChar.getYearDiShi()).append("\n");
-        shierzhangsheng.append("月自坐").append(eightChar.getMonthDiShi()).append("\n");
-        shierzhangsheng.append("日自坐").append(eightChar.getDayDiShi()).append("\n");
-        shierzhangsheng.append("时自坐").append(eightChar.getTimeDiShi()).append("\n");
-        return shierzhangsheng.toString();
+        String DayGan = eightChar.getDayGan();//先获取日干
+        Yun yun = eightChar.getYun(baziResult.gender, baziResult.liuPai);//将大运传出来，建立一个叫yun的东西，这样就是大运的基础
+        DaYun[] daYuns = yun.getDaYun();//使用getdayun方法 把yun转化成数组存起来
+        List<YunNianInfo> daYunList = YunNianFactory.buildDaYunList(daYuns,DayGan);//运用之前的list方法，把大运分解成干支和年龄和年份
+        //在点击大运方法内部还需要新增点击流年的方法，和大运的内容一样 //在这里声明流年
+        List<YunNianInfo> defaultList = YunNianFactory.buildLiuNianList(daYuns[1],DayGan);//先用第0个流年初始化  这是默认第0个流年
+        LiuNianAdapter liuNianAdapter = new LiuNianAdapter(defaultList,(yunNianInfo,Position) ->{
+
+        });
+        binding.recLiuNian.setAdapter(liuNianAdapter);//这里设置了recycle的adapter，之后会在adapter内部生成合适的格子
+        //用于装载流年  默认流年是第0个流年
+
+        //之后需要把这个list拿去继续拆分，挨个上色
+        DaYunAdapter daYunAdapter = new DaYunAdapter(daYunList,(yunNianInfo, Position) -> {//上面是点击事件，点击点击大运，获取位置，然后执行方法
+            //现在是点击流年的方法 在这里要点击之后把数据，数据传入textview已经在liunianadapter里面封装好了传进recycle里面
+
+             List<YunNianInfo> LiuNianList = YunNianFactory.buildLiuNianList(daYuns[Position],DayGan);
+             //点击大运之后根据所在位置新建一个流年list用来装载流年
+            liuNianAdapter.updateData(LiuNianList);
+
+
+//这里是在做点击大运，刷新流年
+        });
+        binding.recDaYun.setAdapter(daYunAdapter);//这里设置了recycle的adapter，之后会在adapter内部生成合适的格子
+        //用于装载大运
 
     }
 
 
 
 
-    //接下来打印纳音
-    public String printNaYin() {
-        EightChar eightChar = baziResult.getEightChar();
-        StringBuilder nayin = new StringBuilder();
-       nayin.append("年纳音").append(eightChar.getYearNaYin()).append("\n");
-
-        nayin.append("月纳音").append(eightChar.getMonthNaYin()).append("\n");
-
-        nayin.append("日纳音").append(eightChar.getDayNaYin()).append("\n");
-
-         nayin.append("时纳音").append(eightChar.getTimeNaYin()).append("\n");
-        return nayin.toString();
-    }
-
-    //接下来打印空亡
-    public String printKongWang(){
-        EightChar eightChar = baziResult.getEightChar();
-        StringBuilder kongwang = new StringBuilder();
-        kongwang.append("年空亡").append(eightChar.getYearXunKong()).append("\n");
-        kongwang.append("月空亡").append(eightChar.getMonthXunKong()).append("\n");
-        kongwang.append("日空亡").append(eightChar.getDayXunKong()).append("\n");
-        kongwang.append("时空亡").append(eightChar.getTimeXunKong()).append("\n");
-       return kongwang.toString();
 
 
-    }
 
-    public String printDaYun() {
-        EightChar eightChar = baziResult.getEightChar();
-        int liuPai = baziResult.liuPai;
-        int gender = baziResult.gender;
-        StringBuilder dayun = new StringBuilder();
 
-        Yun yun = eightChar.getYun(gender, liuPai);
-        DaYun[] daYunArr = yun.getDaYun();
 
-        for (int i = 0, j = daYunArr.length; i < j; i++) {
-            DaYun daYun = daYunArr[i];
-            dayun.append("大运["+i+"] = ").append(daYun.getStartYear()).append("年 ").append(daYun.getStartAge()).append("岁 ").append(daYun.getGanZhi()).append("\n");
-        }
-        return dayun.toString();
 
-    }
 
-    //接下来是汇总
-    public String  printAll(){
-        StringBuilder all = new StringBuilder();
-        all.append(printSiZhu()).append("\n");
-        all.append(printShiShen()).append("\n");
-        all.append(printDiZhangSheng()).append("\n");
-        all.append(printNaYin()).append("\n");
-        all.append(printKongWang()).append("\n");
-        all.append(printDaYun()).append("\n");
-        return all.toString();
-
-    }
 
 
 //接下来打印旺相休囚死

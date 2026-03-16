@@ -1,18 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/DaYun"
-        android:layout_width="88dp"
-        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:gravity="center"
+        android:padding="6dp"
+        android:background="@drawable/bg_dayun_item">
 
 
         <TextView
@@ -20,16 +14,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:textSize="11sp"
+            android:textColor="@color/dayun_year_text"
 
-            />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/tvDaYunAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textColor="@color/dayun_year_text"
             android:textSize="11sp" />
 
@@ -38,17 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:textSize="11sp"
-            android:textColor="@color/dayun_year_text"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvDaYunDiZhi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_weight="1" />
+            android:textSize="20sp" />
 
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
 

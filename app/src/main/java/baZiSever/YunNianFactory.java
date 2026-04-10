@@ -10,14 +10,6 @@ import java.util.List;
 public class YunNianFactory {
 
 
-    //先写一个map用来执行自坐的
-
-    private static final String[] CHANG_SHENG =
-            {"长生","沐浴","冠带","临官","帝旺","衰","病","死","墓","绝","胎","养"};
-
-
-    public List<String> cangGan = new ArrayList<>();
-    public List<String> shiShenCangGan = new ArrayList<>();
 
 
    //这个类是用来赋予天干和地支颜色以及十神和藏干和藏干十神的肥肠重要

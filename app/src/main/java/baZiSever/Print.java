@@ -1,8 +1,6 @@
 package baZiSever;
 
 
-import static android.view.View.VISIBLE;
-
 import static baZiSever.Tools.getDiShi;
 
 import com.example.mybazi.databinding.ActivityMainBinding;
@@ -30,6 +28,9 @@ public class Print {
         this.binding = binding;
         this.context = context;
     }
+
+
+
 
 
 

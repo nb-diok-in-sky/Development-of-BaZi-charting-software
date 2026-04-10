@@ -33,10 +33,9 @@ public class DaYunAdapter extends RecyclerView.Adapter<DaYunAdapter.ViewHolder> 
 
 
     public interface OnDaYunClickListener {
-         void onDaYunClick(YunNianInfo yunNianInfo,int Position);
+         void onDaYunClick(YunNianInfo yunNianInfo,int position);
          //这是点击事件触发的方法，当你点击的时候返回某个大运的信息（年龄，干支，几几年）还有位置（第几个大运）
     }
-
 
 
     public DaYunAdapter(List<YunNianInfo> daYunList, OnDaYunClickListener listener) {

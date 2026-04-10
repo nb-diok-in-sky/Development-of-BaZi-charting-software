@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.mybazi.databinding.ActivityMainBinding;
 
 import baZiSever.BaziResult;
+import baZiSever.GanZhiBottomSheet;
 import baZiSever.Print;
 import baZiSever.Tools;
 
@@ -25,9 +26,23 @@ public class MainActivity extends AppCompatActivity {
 
     private NumberPicker pickerYear,pickerMonth,pickerDay,pickerTime;
     private Spinner etGender, etLiuPai;
-    private Button btnCalc;
+    private Button btnCalc,btnClose;
  private ActivityMainBinding binding;
  private Tools tools = new Tools();
+
+
+
+
+    public TextView[] views ;//声明数组和监听器
+    View.OnClickListener listener = v->{
+
+        String text = ((TextView) v).getText().toString();//这里是从textview里面获取到string
+        GanZhiBottomSheet sheet = GanZhiBottomSheet.newInstance(text); //然后通过刚刚的string传入这个地方 获取到
+        sheet.show(getSupportFragmentManager(), "ganzhi");
+
+    };
+
+
 
 //声明了linearlayout了  接下来要初始化 还有绑定  然后就可以调整隐藏和释放了
 
@@ -43,19 +58,29 @@ public void calculateBaZi(BaziResult baziResult  ){
 
         //获取信息
         baziResult.getUserInput(pickeryear, pickermonth, pickerday, pickertime,gender, liuPai);
-
         Print print = new Print(baziResult,tools,binding,this);
+
     //tvResult.setText(print.printAll());//将信息打印在textview里面
 
+    views =new TextView[] {
+        binding.tvYearGan,binding.tvYearZhi,
+                binding.tvMonthGan,binding.tvMonthZhi,
+                binding.tvDayGan,binding.tvDayZhi,
+                binding.tvTimeGan,binding.tvTimeZhi,
+                binding.tvYunGan,binding.tvYunZhi,
+                binding.tvLiuGan,binding.tvLiuZhi
+    };//这里是绑定组件，为了点击事件做准备，点到这些组件的时候就可以获取里面的textview
 
 
-    findViewById(R.id.printControll).setVisibility(View.VISIBLE);
     findViewById(R.id.brithButton).setVisibility(View.GONE);
     findViewById(R.id.brithInput).setVisibility(View.GONE);
+    findViewById(R.id.printControll).setVisibility(View.VISIBLE);
+
     print.printResult();
 
-
-
+    for (TextView tv : views) {
+        tv.setOnClickListener(listener);
+    }
     binding.recDaYun.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     binding.recLiuNian.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     print.printDaYun();
@@ -82,6 +107,9 @@ public void calculateBaZi(BaziResult baziResult  ){
 
         });
 
+
+
+
         //下面是约束piker组件他的最大最小值
         pickerYear = findViewById(R.id.pickerYear);
         pickerYear.setMinValue(1800); // 最小年份
@@ -104,16 +132,30 @@ public void calculateBaZi(BaziResult baziResult  ){
         etGender = findViewById(R.id.etGender);
         etLiuPai = findViewById(R.id.etLiuPai);
         btnCalc = findViewById(R.id.btnCalc);
+        btnClose = findViewById(R.id.btnClose);
 
         findViewById(R.id.printControll).setVisibility(View.GONE);
         findViewById(R.id.brithButton).setVisibility(View.VISIBLE);
         findViewById(R.id.brithInput).setVisibility(View.VISIBLE);
+
         //将baziresult初始化
         BaziResult baziResult = new BaziResult();
 
-        btnCalc.setOnClickListener(view -> calculateBaZi(baziResult)
+        btnCalc.setOnClickListener(view -> {
+            calculateBaZi(baziResult);
+        } );
 
-        );
+        btnClose.setOnClickListener(view -> {
+            findViewById(R.id.printControll).setVisibility(View.GONE);
+            findViewById(R.id.brithButton).setVisibility(View.VISIBLE);
+            findViewById(R.id.brithInput).setVisibility(View.VISIBLE);
+        }  );
+
+
+
+
+
+
 
     }
 
